@@ -18,7 +18,7 @@
         #globo {
             width: 150px;
             height: 200px;
-            background-color: #e41913;
+            background-color: #ff6347;
             border-radius: 50% 50% 40% 40%;
             position: relative;
             cursor: pointer;
@@ -30,7 +30,7 @@
             left: 50%;
             width: 10px;
             height: 80px;
-            background-color: #e41913;
+            background-color: #ff6347;
             border-radius: 0 0 10px 10px;
             transform: translateX(-50%);
         }
@@ -77,19 +77,23 @@
     <div id="mensaje">¡Ganaste!</div>
     <canvas id="canvas"></canvas>
 
+    <!-- Elemento de audio -->
+    <audio id="explosionSound" src="win.mp3" preload="auto"></audio>
+
     <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         let serpentineParticles = [];
         let isExploding = false;
+        const explosionSound = document.getElementById('explosionSound');
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
         // Crear partículas
         function createParticles(x, y) {
-            const colors = ['#150f96', '#7acb00', '#01c1d6', '#6e27c5', '#ffb617'];
+            const colors = ['#ff6347', '#ff4500', '#ff1493', '#ff69b4', '#dc143c'];
             for (let i = 0; i < 100; i++) {
                 particles.push({
                     x: x,
@@ -105,7 +109,7 @@
 
         // Crear serpentinas
         function createSerpentine() {
-            const colors = ['#150f96', '#7acb00', '#01c1d6', '#6e27c5', '#ffb617'];
+            const colors = ['#ff6347', '#ff4500', '#ff1493', '#ff69b4', '#dc143c'];
             for (let i = 0; i < 5; i++) {
                 serpentineParticles.push({
                     x: Math.random() * canvas.width,
@@ -177,6 +181,7 @@
                 isExploding = true;
                 createParticles(event.clientX, event.clientY);
                 document.getElementById('globo').style.display = 'none';
+                explosionSound.play(); // Reproducir el sonido de explosión
             }
         });
 
@@ -184,3 +189,4 @@
     </script>
 </body>
 </html>
+
