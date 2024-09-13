@@ -12,13 +12,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f8ff;
+            background-color: #150f96;
             overflow: hidden;
         }
         #globo {
             width: 150px;
             height: 200px;
-            background-color: #ff6347;
+            background-color: #e41913;
             border-radius: 50% 50% 40% 40%;
             position: relative;
             cursor: pointer;
@@ -30,24 +30,45 @@
             left: 50%;
             width: 10px;
             height: 80px;
-            background-color: #ff6347;
+            background-color: #e41913;
             border-radius: 0 0 10px 10px;
             transform: translateX(-50%);
         }
+
+        #trompetaIzquierda {
+            position: absolute;
+            bottom: 10px; /* Ajusta según tu preferencia */
+            left: 10px; /* Ajusta según tu preferencia */
+            width: 250px; /* Ajusta el tamaño de la trompeta */
+            height: auto;
+            z-index: 10; /* Asegura que esté encima de otros elementos */
+        }
+
+        #trompetaDerecha {
+            position: absolute;
+            bottom: 10px; /* Ajusta según tu preferencia */
+            right: 10px; /* Ajusta según tu preferencia */
+            width: 250px; /* Ajusta el tamaño de la trompeta */
+            height: auto;
+            z-index: 10; /* Asegura que esté encima de otros elementos */
+        }
+
         #mensaje {
             display: none;
-            font-size: 48px;
-            color: #32cd32;
+            font-size: 60px;
+            color: #7acb00;
             font-weight: bold;
             position: absolute;
             top: 50%;
             left: 50%;
+            text-align: center;
             transform: translate(-50%, -50%);
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
             opacity: 0;
             transition: opacity 1s ease-in-out;
             animation: bounceIn 1s forwards;
         }
+
         @keyframes bounceIn {
             0% {
                 opacity: 0;
@@ -62,6 +83,7 @@
                 transform: translate(-50%, -50%) scale(1);
             }
         }
+
         canvas {
             position: absolute;
             top: 0;
@@ -74,11 +96,14 @@
 </head>
 <body>
     <div id="globo"></div>
-    <div id="mensaje">¡Ganaste!</div>
+    <div id="mensaje">¡Felicitaciones ve por tu premio!</div>
     <canvas id="canvas"></canvas>
 
     <!-- Elemento de audio -->
-    <audio id="explosionSound" src="win.mp3" preload="auto"></audio>
+    <audio id="explosionSound" src="winner.mp3" preload="auto"></audio>
+
+    <img src="tromizq.png" id="trompetaIzquierda" alt="Trompeta Izquierda">
+    <img src="tromder.png" id="trompetaDerecha" alt="Trompeta Derecha">
 
     <script>
         const canvas = document.getElementById('canvas');
@@ -93,7 +118,7 @@
 
         // Crear partículas
         function createParticles(x, y) {
-            const colors = ['#ff6347', '#ff4500', '#ff1493', '#ff69b4', '#dc143c'];
+            const colors = ['#6e27c5', '#150f96', '#7acb00', '#01c1d6', '#ffb617'];
             for (let i = 0; i < 100; i++) {
                 particles.push({
                     x: x,
@@ -109,7 +134,7 @@
 
         // Crear serpentinas
         function createSerpentine() {
-            const colors = ['#ff6347', '#ff4500', '#ff1493', '#ff69b4', '#dc143c'];
+            const colors = ['#6e27c5', '#150f96', '#7acb00', '#01c1d6', '#ffb617'];
             for (let i = 0; i < 5; i++) {
                 serpentineParticles.push({
                     x: Math.random() * canvas.width,
